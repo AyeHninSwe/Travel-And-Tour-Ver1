@@ -1,0 +1,37 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="design.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function refreshNews()
+    {
+        $("#news").load("ajax_VisitAgency_Reviews.php");	
+    }
+</script>
+<script src="reviewForAgencySave.js"></script>
+
+</head>
+<body onLoad="refreshNews()">
+<div style="height:200px;">
+<form action="" id="SaveReviews">
+ <ul class="rate-area">
+ 	<input type="radio" name="rating" id="5-star" value="Amazing">
+ 	<label for="5-star" title="Amazing"></label>
+ 	<input type="radio" name="rating" id="4-star" value="Good">
+ 	<label for="4-star" title="Good"></label>
+ 	<input type="radio" name="rating" id="3-star" value="Average">
+ 	<label for="3-star" title="Average"></label>
+ 	<input type="radio" name="rating" id="2-star" value="Not Good">
+ 	<label for="2-star" title=" Not Good"></label>
+    <input type="radio" name="rating" id="1-star" value="Bad">
+ 	<label for="1-star" title="Bad"></label>
+ </ul>
+ <div>
+ <textarea name="description" cols="30" rows="5"></textarea><br>
+ <input type="submit" name="submit" value="Post" class="buttons">
+</div>
+ </form></div>
+<div id="news"></div>
+
+</body>
+</html>

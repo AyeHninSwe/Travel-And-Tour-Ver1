@@ -1,0 +1,64 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="design.css"/>
+</head>
+<body style="overflow-y: scroll;">
+<form action="" method="post">
+	<table border="1" align="center">
+    	<tr>
+        <th></th>
+        <th>Package Name</th>
+        <th>Customer Name</th>
+        <th>Email or Phone</th>
+        <th>Check in Date</th>
+        </tr>
+        <?php
+        	$host="localhost";
+    		$user="root";
+    		$pass="";
+    		$database="traveldb";
+    		$connection=mysqli_connect($host,$user,$pass)or die("Couldn't connect to datbase");
+    		mysqli_select_db($connection,$database);
+    		$query="select * from ordertb";
+            $result=mysqli_query($connection,$query);
+            $num_result=mysqli_num_rows($result);
+		    
+            
+           
+		    
+            
+            $st="";
+            for($i=0;$i<$num_result;$i++){
+            	$orders= mysqli_fetch_assoc($result);
+                 $query3="select * from package where PackageId = '".$orders["PackageId"]."'";
+            	$result3=mysqli_query($connection,$query3);
+		    
+            
+            	$query1="select * from customer where CustomerId = '".$orders["CustomerId"]."'";
+            	$result1=mysqli_query($connection,$query1);
+		    
+            
+            	$query2="select * from agency where AgencyId='".$num_rows["AgencyId"]."'";
+            	$result2=mysqli_query($connection,$query2);
+                $packages= mysqli_fetch_assoc($result3);
+                $cust= mysqli_fetch_assoc($result1);
+                $agency= mysqli_fetch_assoc($result2);
+                
+            	$st.="<tr><td></td>";
+            	$st.="<td>".$packages["Name"]."</td><td>";
+                $st.=$cust["Name"]."</td><td>";
+                $st.=$cust["EmailOrPhone"]."</td><td>";
+                $st.=$orders["CheckIn_date"]."</td></tr>";
+            }
+            echo $st;
+        ?>
+    	<!--<tr align="center">
+        <td colspan="6" >
+    		<input type="submit" name="accept" value="Accept">
+   		</td>	
+        </tr> --> 
+   </table><br>
+   <center><input type="submit" name="accept" value="Accept" class="buttons"></center>
+ </form>
+</body>
+</html>
